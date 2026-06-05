@@ -60,7 +60,7 @@ jobs:
           echo "Checking Android targets..."
           for target in aarch64-linux-android armv7-linux-androideabi x86_64-linux-android i686-linux-android; do
             echo "  Checking $target..."
-            if cargo check --target "$target" 2>/dev/null; then
+            if cargo check --target "$target" --lib --no-default-features 2>/dev/null; then
               echo "    ✅ $target compiles"
             else
               echo "    ⚠️  $target needs adaptation - will cross-compile with NDK"
@@ -119,7 +119,7 @@ jobs:
           cargo ndk \
             --target ${{ matrix.target }} \
             --platform ${{ matrix.api }} \
-            -- build --release
+            -- build --release --lib --no-default-features
 
       - name: Copy .so to jniLibs
         run: |

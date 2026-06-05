@@ -19,6 +19,9 @@ gui = ["iced", "iced_native"]
 self-update = ["flate2", "tar"]
 no-self-update = []
 
+[lib]
+crate-type = ["cdylib", "rlib"]
+
 [dependencies]
 iced = { git = "https://github.com/iced-rs/iced.git", optional = true }
 iced_native = { git = "https://github.com/iced-rs/iced.git", optional = true }
@@ -51,3 +54,6 @@ required-features = ["gui"]
 [[bin]]
 name = "uad_android"
 path = "src/bin/uad_android.rs"
+
+[target.'cfg(target_os = "android")'.dependencies]
+jni = { version = "0.21", default-features = false }

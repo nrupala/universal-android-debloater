@@ -1,4 +1,5 @@
-use crate::core::config::{BackupSettings, Config, DeviceSettings, GeneralSettings, Settings};
+use crate::core::config::{BackupSettings, Config, DeviceSettings, GeneralSettings};
+pub use crate::core::config::Settings;
 use crate::core::save::{
     backup_phone, list_available_backup_user, list_available_backups, restore_backup, BACKUP_DIR,
 };
