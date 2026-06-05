@@ -1,32 +1,16 @@
-use crate::core::config::{BackupSettings, Config, DeviceSettings, GeneralSettings};
+use crate::core::config::{BackupSettings, Config, DeviceSettings, GeneralSettings, Settings};
 use crate::core::save::{
     backup_phone, list_available_backup_user, list_available_backups, restore_backup, BACKUP_DIR,
 };
 use crate::core::sync::{get_android_sdk, perform_adb_commands, CommandType, Phone};
 use crate::core::theme::Theme;
+use crate::core::types::{PackageInfo, PackageRow};
 use crate::core::utils::{open_url, string_to_theme, DisplayablePath};
 use crate::gui::style;
-use crate::gui::views::list::PackageInfo;
-use crate::gui::widgets::package_row::PackageRow;
 
 use iced::widget::{button, checkbox, column, container, pick_list, radio, row, text, Space};
 use iced::{alignment, Alignment, Command, Element, Length, Renderer};
 use std::path::PathBuf;
-
-#[derive(Debug, Clone)]
-pub struct Settings {
-    pub general: GeneralSettings,
-    pub device: DeviceSettings,
-}
-
-impl Default for Settings {
-    fn default() -> Self {
-        Self {
-            general: Config::load_configuration_file().general,
-            device: DeviceSettings::default(),
-        }
-    }
-}
 
 #[derive(Debug, Clone)]
 pub enum Message {

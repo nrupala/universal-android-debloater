@@ -1,6 +1,5 @@
+use crate::core::types::{PackageInfo, PackageRow};
 use crate::core::uad_lists::PackageState;
-use crate::gui::views::list::PackageInfo;
-use crate::gui::widgets::package_row::PackageRow;
 use regex::Regex;
 use retry::{delay::Fixed, retry, OperationResult};
 use serde::{Deserialize, Serialize};

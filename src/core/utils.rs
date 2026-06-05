@@ -1,7 +1,7 @@
 use crate::core::sync::{hashset_system_packages, list_all_system_packages, User};
 use crate::core::theme::Theme;
+use crate::core::types::PackageRow;
 use crate::core::uad_lists::{Package, PackageState, Removal, UadList};
-use crate::gui::widgets::package_row::PackageRow;
 use chrono::offset::Utc;
 use chrono::DateTime;
 use std::collections::HashMap;

@@ -1,7 +1,7 @@
 use crate::core::config::DeviceSettings;
 use crate::core::sync::{apply_pkg_state_commands, CorePackage, Phone, User};
+use crate::core::types::PackageRow;
 use crate::core::utils::DisplayablePath;
-use crate::gui::widgets::package_row::PackageRow;
 use crate::CACHE_DIR;
 use serde::{Deserialize, Serialize};
 use static_init::dynamic;

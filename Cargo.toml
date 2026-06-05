@@ -13,14 +13,15 @@ edition = "2021"
 
 [features]
 default = ["wgpu", "self-update"]
-wgpu = []                         # Iced/wgpu is default
-glow = ["iced/glow"]              # OpenGL support
+wgpu = ["gui"]
+glow = ["gui", "iced/glow"]
+gui = ["iced", "iced_native"]
 self-update = ["flate2", "tar"]
 no-self-update = []
 
 [dependencies]
-iced = { git = "https://github.com/iced-rs/iced.git" }
-iced_native = { git = "https://github.com/iced-rs/iced.git" }
+iced = { git = "https://github.com/iced-rs/iced.git", optional = true }
+iced_native = { git = "https://github.com/iced-rs/iced.git", optional = true }
 serde = { version = "^1.0", features = ["derive"] }
 serde_json = "^1.0"
 static_init = "^1.0"
@@ -41,3 +42,12 @@ tar = { version = "^0.4", optional = true }
 opt-level = "s"
 lto = true
 strip = "symbols"
+
+[[bin]]
+name = "uad_gui"
+path = "src/main.rs"
+required-features = ["gui"]
+
+[[bin]]
+name = "uad_android"
+path = "src/bin/uad_android.rs"

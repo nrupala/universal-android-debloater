@@ -1,6 +1,5 @@
 use crate::core::sync::{get_android_sdk, User};
 use crate::core::utils::DisplayablePath;
-use crate::gui::views::settings::Settings;
 use crate::CONFIG_DIR;
 use serde::{Deserialize, Serialize};
 use static_init::dynamic;
@@ -45,6 +44,21 @@ impl Default for DeviceSettings {
             multi_user_mode: get_android_sdk() > 21,
             disable_mode: false,
             backup: BackupSettings::default(),
+        }
+    }
+}
+
+#[derive(Debug, Clone)]
+pub struct Settings {
+    pub general: GeneralSettings,
+    pub device: DeviceSettings,
+}
+
+impl Default for Settings {
+    fn default() -> Self {
+        Self {
+            general: Config::load_configuration_file().general,
+            device: DeviceSettings::default(),
         }
     }
 }

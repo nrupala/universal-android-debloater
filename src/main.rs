@@ -2,6 +2,11 @@
 #[macro_use]
 extern crate log;
 
+#[cfg(feature = "gui")]
+mod gui;
+
+mod core;
+
 use crate::core::utils::setup_uad_dir;
 use fern::{
     colors::{Color, ColoredLevelConfig},
@@ -11,9 +16,6 @@ use log::Record;
 use static_init::dynamic;
 use std::path::PathBuf;
 use std::{fmt::Arguments, fs::OpenOptions};
-
-mod core;
-mod gui;
 
 #[dynamic]
 static CONFIG_DIR: PathBuf = setup_uad_dir(dirs::config_dir());
