@@ -8,8 +8,16 @@ on:
         required: false
         default: 'dev'
   push:
+    branches:
+      - main
     tags:
       - 'v*'
+    paths:
+      - '**.rs'
+      - 'Cargo.toml'
+      - 'Cargo.lock'
+      - 'android/**'
+      - '.github/workflows/build-android-apk.yml'
   pull_request:
     paths:
       - '**.rs'
@@ -23,7 +31,7 @@ concurrency:
 env:
   CARGO_TERM_COLOR: always
   RUST_BACKTRACE: 1
-  APK_VERSION_NAME: ${{ github.event.inputs.version || 'dev' }}
+  APK_VERSION_NAME: ${{ github.event.inputs.version || github.ref_name || format('0.6.0-run.{0}', github.run_number) }}
 
 jobs:
   check:
