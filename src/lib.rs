@@ -93,8 +93,8 @@ pub fn setup_logger() -> Result<(), fern::InitError> {
 pub extern "system" fn Java_com_github_uadgui_debloater_NativeBridge_runDeBloater(
     mut env: jni::JNIEnv,
     _class: jni::objects::JClass,
-    list_path: jni::sys::JString,
-) -> jni::sys::JString {
+    list_path: jni::objects::JString,
+) -> jni::sys::jstring {
     let url: String = match env.get_string(&list_path) {
         Ok(s) => s.into(),
         Err(e) => {
